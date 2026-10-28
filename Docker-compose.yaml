@@ -1,11 +1,10 @@
 services:
-  app:
+  search-service:
     build: 
       context: .
       dockerfile: Dockerfile
-    reset: unless-stopped
     ports:
-      - "8000:8000"
+      - "3000:3000"
     #environment:
     #  - SPRING_PROFILES_ACTIVE=prod
     #depends_on:
