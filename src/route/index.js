@@ -9,7 +9,13 @@ router.get('/health', (req, res) => {
 
 router.get('/getsearch', (req, res) => {
   console.log("Calling /getsearch")
-  res.json({ message: 'Search Service using LLM' });
+  res.json({ 
+    status: 'ok',
+    data: {
+      search: 'This is a search result'
+    }
+
+   });
 });
 
 router.get('/', (req, res) => {
