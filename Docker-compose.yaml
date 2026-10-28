@@ -13,7 +13,7 @@ services:
         aliases:
           - search-service
 
-    #restart: unless-stopped
+    #restart: unless-stopped.
 
 networks:
   default:
