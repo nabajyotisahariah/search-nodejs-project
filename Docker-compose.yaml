@@ -1,24 +1,11 @@
 services:
   search-service:
-    build:
+    build: 
       context: .
       dockerfile: Dockerfile
-
-    expose:
-      - "3000"
-
-    networks:
-      default:
-      shared:
-        aliases:
-          - search-service
-
-    #restart: unless-stopped.
-
-networks:
-  default:
-    driver: bridge
-
-  shared:
-    name: monorepo-network
-    external: true
+    ports:
+      - "3000:3000"
+    #environment:
+    #  - SPRING_PROFILES_ACTIVE=prod
+    #depends_on:
+    #  - db
