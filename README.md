@@ -35,8 +35,13 @@ The routes are available both at the root and under the `/api/search` prefix.
 Build the image and publish the service on port `3000`:
 
 ```sh
-docker build -t search-service .
-docker run --rm -p 3000:3000 search-service
+docker build -t search-service:1.0 .
+docker run --rm -p 3000:3000 search-service:1.0
+
+docker tag search-service:1.0 \
+      asia-south2-docker.pkg.dev/weather-project-prod-511603/ecommerce-nodejs-app-repo/search-service:1.0
+
+docker push asia-south2-docker.pkg.dev/weather-project-prod-511603/ecommerce-nodejs-app-repo/search-service:1.0
 ```
 
 Then check the health endpoint at <http://localhost:3000/health>.

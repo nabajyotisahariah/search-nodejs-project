@@ -1,4 +1,11 @@
-#  docker compose -f docker-compose-network.yaml up --build
+# docker build
+# docker compose -f docker-compose-network.yaml up --build
+
+## 2. Create the shared Docker network
+# Run this once on your Docker host:
+# docker network create monorepo-network
+# Verify it:
+# docker network inspect monorepo-network
 
 services:
   search-service:
