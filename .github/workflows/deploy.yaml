@@ -15,22 +15,26 @@ jobs:
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.2.0
-
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ec2-user
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd /home/ec2-user/simple-nodejs-project
+            set -e
+
+            cd /home/ec2-user/search-nodejs-project
 
             git pull origin main
 
-            docker build -t my-nodejs-app .
+            docker build -t search-nodejs-app:latest .
 
-            docker stop my-nodejs-app-container || true
-            docker rm my-nodejs-app-container || true
+            docker stop search-nodejs-container || true
+            docker rm search-nodejs-container || true
 
             docker run -d \
-              -p 8000:8000 \
-              --name my-nodejs-app-container \
-              my-nodejs-app
+              --restart unless-stopped \
+              -p 8000:3000 \
+              --name search-nodejs-container \
+              search-nodejs-app:latest
+
+            docker image prune -f

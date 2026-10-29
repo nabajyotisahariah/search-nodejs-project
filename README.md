@@ -42,6 +42,13 @@ docker tag search-service:1.0 \
       asia-south2-docker.pkg.dev/weather-project-prod-511603/ecommerce-nodejs-app-repo/search-service:1.0
 
 docker push asia-south2-docker.pkg.dev/weather-project-prod-511603/ecommerce-nodejs-app-repo/search-service:1.0
+
+---
+
+helm list
+helm install microservices1.1-search ecommerce1.1-gce/
+helm upgrade --install microservices1.1-search ecommerce1.1-gce/
+
 ```
 
 Then check the health endpoint at <http://localhost:3000/health>.
