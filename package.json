@@ -1,5 +1,5 @@
 {
-  "name": "poc-sample-nodejs",
+  "name": "search-nodejs-project",
   "version": "1.0.3",
   "main": "index.js",
   "scripts": {

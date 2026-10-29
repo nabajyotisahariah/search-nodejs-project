@@ -1,0 +1,13 @@
+#  docker compose -f docker-compose-network.yaml up --build
+
+services:
+  search-service:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    #environment:
+    #  - SPRING_PROFILES_ACTIVE=prod
+    #depends_on:
+    #  - db
