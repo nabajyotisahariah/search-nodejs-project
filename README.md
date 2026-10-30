@@ -46,8 +46,9 @@ docker push asia-south2-docker.pkg.dev/weather-project-prod-511603/ecommerce-nod
 ---
 
 helm list
-helm install microservices1.1-search ecommerce1.1-gce/
-helm upgrade --install microservices1.1-search ecommerce1.1-gce/
+helm install ecommerce1.1-search helm/ecommerce1.1-gce/
+helm uninstall ecommerce1.1-search
+helm upgrade --install ecommerce1.1-search helm/ecommerce1.1-gce/
 
 ```
 

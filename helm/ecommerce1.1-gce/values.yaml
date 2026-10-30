@@ -4,8 +4,8 @@
 
 # helm lint ./helm/ecommerce1.1-gce/
 # $ helm list
-# $ helm install microservices1.1-search ./helm/ecommerce1.1-gce/
-# $ helm uninstall microservices1.1-search
+# $ helm install ecommerce1.1-search ./helm/ecommerce1.1-gce/
+# $ helm uninstall ecommerce1.1-search
 
 global:
   image:
