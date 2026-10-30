@@ -7,6 +7,10 @@
 # $ helm install ecommerce1.1-search ./helm/ecommerce1.1-gce/
 # $ helm uninstall ecommerce1.1-search
 
+# Ingress Load Balancing IP Check
+# $ kubectl describe ingress microservices-ingress-search [microservices-ingress-search defined ingress.yaml]
+
+
 global:
   image:
     registry: asia-south2-docker.pkg.dev
