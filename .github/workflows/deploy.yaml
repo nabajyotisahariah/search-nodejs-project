@@ -1,35 +1,65 @@
-#GitHub Actions Tutorial - Deploy Node.js Application with CI CD and GitHub Actions
-#https://www.youtube.com/watch?v=y7S2oSjJ8PA&t=1808s
 
-#SSH Key Generation Command
-#ssh-keygen -t rsa -b 4090 -C "nabajyotisahariah009@gmail.com"
-
-name: NodeJS application deploy
+name: Search Node.js CI-CD Pipeline
 
 on:
   push:
     branches:
       - main
 
+  workflow_dispatch:
+
 jobs:
   build:
+    name: Build and Validate
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
+      - name: Checkout repository
         uses: actions/checkout@v5
 
+      - name: Build Docker image
+        run: |
+          docker build -t search-service:${{ github.sha }} .
+
+      - name: Validate Docker Compose
+        run: |
+          docker compose -f Docker-compose.yaml config
+
+  deploy:
+    name: Deploy to Linux Server
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.2.0
+
         with:
           host: ${{ secrets.SSH_HOST }}
-          username: root
+          username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
+
           script: |
             set -e
 
-            cd /home/nabajyotisahariah009/search-nodejs-project
+            echo "Starting deployment..."
+
+            cd /home/deploy/search-nodejs-project
 
             git pull origin main
 
-            docker compose up --build -d
+            docker compose -f Docker-compose.yaml up --build -d --remove-orphans
+
+            echo "Checking application health..."
+
+            for i in $(seq 1 15); do
+              if curl -fsS http://localhost/health; then
+                echo "Deployment successful!"
+                exit 0
+              fi
+              sleep 5
+            done
+
+            echo "Health check failed!"
+            docker compose -f Docker-compose.yaml logs --tail=100
+            exit 1
