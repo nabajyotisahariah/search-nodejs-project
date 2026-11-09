@@ -1,6 +1,6 @@
 
 #ssh-keygen -t ed25519 -C "github-actions-deploy" -f ~/.ssh/search-nodejs-deploy
-#ssh -i ~/.ssh/search-nodejs-deploy deploy@<IP>
+#ssh -i ~/.ssh/search-nodejs-deploy deploy@<IP> 
 
 name: Search Node.js CI-CD Pipeline
 
