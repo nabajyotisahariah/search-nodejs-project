@@ -1,3 +1,6 @@
+#GitHub Actions Tutorial - Deploy Node.js Application with CI CD and GitHub Actions
+#https://www.youtube.com/watch?v=y7S2oSjJ8PA&t=1808s
+
 name: NodeJS application deploy
 
 on:
@@ -17,12 +20,12 @@ jobs:
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.SSH_HOST }}
-          username: ec2-user
+          username: root
           key: ${{ secrets.SSH_KEY }}
           script: |
             set -e
 
-            cd /home/ec2-user/search-nodejs-project
+            cd /home/nabajyotisahariah009/search-nodejs-project
 
             git pull origin main
 
