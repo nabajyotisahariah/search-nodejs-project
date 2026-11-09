@@ -23,7 +23,7 @@ jobs:
 
       - name: Validate Docker Compose
         run: |
-          docker compose -f Docker-compose.yaml config
+          docker compose -f docker-compose.yaml config
 
   deploy:
     name: Deploy to Linux Server
@@ -48,7 +48,7 @@ jobs:
 
             git pull origin main
 
-            docker compose -f Docker-compose.yaml up --build -d --remove-orphans
+            docker compose -f docker-compose.yaml up --build -d --remove-orphans
 
             echo "Checking application health..."
 
@@ -61,5 +61,5 @@ jobs:
             done
 
             echo "Health check failed!"
-            docker compose -f Docker-compose.yaml logs --tail=100
+            docker compose -f docker-compose.yaml logs --tail=100
             exit 1
