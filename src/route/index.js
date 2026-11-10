@@ -20,7 +20,7 @@ router.get('/getsearch', (req, res) => {
 
 router.get('/', (req, res) => {
   console.log("Calling /")
-  res.json({ message: 'Search Service v5' });
+  res.json({ message: 'Search Service v6' });
 });
 
 module.exports = router;
